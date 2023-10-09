@@ -22,14 +22,14 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers;
+    use RegistersUsers;  //'ShowRegistrationForm'と'Register'メソッドを呼び出せる(トレイト)
 
     /**
      * Where to redirect users after registration.
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/'; //ユーザーの新規登録が正しく行えた後トップページ('/'はトップページを意味する)に自動的に飛ぶ
 
     /**
      * Create a new controller instance.

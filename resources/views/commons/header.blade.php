@@ -9,7 +9,7 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">新規会員登録</a>
+                <a class="nav-link active" aria-current="page" href="{{ route('signup') }}">新規会員登録</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page"href="#">ログイン</a>
