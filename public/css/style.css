@@ -1,0 +1,36 @@
+.header_container{
+border-bottom:black 4px solid;
+}
+.navbar-nav{
+margin-left:848px;
+}
+.nav-item{
+margin-right:16px;
+}
+.top_container_area{
+position:relative;
+background-color:lightgreen;
+margin:40px;
+height:500px;
+}
+.top_container_area h1{
+position:absolute;
+top:25%;
+left:22%;
+display:inline-block;
+text-align:center;
+background-color: white;
+padding:80px;
+}
+.top_container p{
+text-align:center;
+}
+.footer_container{
+width:100%;
+height:100px;
+background-color:lightgray;
+}
+.footer_container p{
+text-align:center;
+padding-top:40px;
+}
