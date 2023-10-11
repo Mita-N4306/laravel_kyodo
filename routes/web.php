@@ -14,4 +14,4 @@
 Route::get('signup','Auth\RegisterController@ShowRegistrationForm')->name('signup'); //新規登録フォーム表示
 Route::post('signup','Auth\RegisterController@Register')->name('signup.post'); //新規登録処理を実行
 
-Route::get('/', 'UsersController@index');
+Route::get('/', 'UsersController@index')->name('top');
