@@ -64,7 +64,14 @@ text-align:center;
 .button_container{
 margin-bottom:12px;
 }
-
+.new-register{
+margin-bottom:12px;
+}
+.login-user-name{
+display:flex;
+justify-content:flex-end;
+margin-top:12px;
+}
 /* footer */
 .footer_container{
 width:100%;
