@@ -23,6 +23,7 @@ Route::get('/', 'UsersController@index')->name('top');
 //投稿機能
 Route::get('post/create','PostController@create')->name('post.create'); //新規投稿表示
 Route::post('post','PostController@store')->name('post.store'); //新規投稿実行
+Route::get('post','PostController@index')->name('post.index');
 Route::get('post/{post}','PostController@show')->name('post.show'); //投稿個別表示
 Route::get('post/{post}/edit','PostController@edit')->name('post.edit'); //投稿編集フォームの表示
 Route::put('post/{post}','PostController@update')->name('post.update'); //編集したデーターを保存

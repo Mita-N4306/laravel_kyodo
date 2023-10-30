@@ -15,7 +15,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+      $posts = Post::orderBy('created_at','desc')->get();
+      $user = auth()->user();
+    //   return view('post.index',compact('posts','user')); compact関数
+      return view('post.index',['posts'=>$posts,'user'=>$user]);
     }
 
     /**
@@ -99,7 +102,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+      return view('post.show',['post'=>$post]);
+    //   return view('post.show',compact('post')); コンパクト関数
     }
 
     /**
