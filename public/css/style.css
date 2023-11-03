@@ -92,6 +92,17 @@ align-items:center;
 .body-container img{
 height:300px;
 }
+.edit-button-container{
+text-align:right;
+margin-right:12px;
+}
+.return-back-container{
+text-align:center
+}
+.back-button-container{
+margin-bottom:8px;
+display:inline-block
+}
 /* footer */
 .footer_container{
 width:100%;

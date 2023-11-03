@@ -8,11 +8,7 @@
   <div class="text_container">
     <h2>投稿新規作成</h2>
     <p>↓↓投稿内容を入力後、投稿ボタンを押してください↓↓</p>
-    @if(session('message'))
-     <div class="message-container" style="text-align:center; padding:8px; border:solid 2px green; background-color:lightgreen">
-      {{session('message')}}
-     </div>
-    @endif
+@include('commons.success_message')
  <form action="{{ route('post.store')}}" method="POST" enctype="multipart/form-data">
  @csrf
  <div class="form_group">
