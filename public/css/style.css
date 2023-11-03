@@ -83,16 +83,20 @@ background-color:lightgreen;
 text-align:center;
 margin-bottom:12px;
 }
+.title-container{
+display:inline-block;
+}
 .body-container{
 display:flex;
 flex-direction:column;
 justify-content:center;
-align-items:center;
+/* align-items:center; */
 }
 .body-container img{
 height:300px;
 }
 .edit-button-container{
+display:inline-block;
 text-align:right;
 margin-right:12px;
 }

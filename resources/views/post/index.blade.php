@@ -3,6 +3,7 @@
  <div class="posts-list-container">
     {{ $user->name }}さん、こんにちは！
   <h1>過去の投稿一覧</h1>
+  @include('commons.success_message')
   @foreach($posts as $post)
   <div class="title-container">
     <a href="{{ route('post.show',$post)}}">

@@ -16,6 +16,11 @@
                       <button type="button" class="btn btn-success">編集</button>
                      </div>
                      </a>
+                <form action="{{ route('post.destroy',$post) }}" method="post">
+                @csrf
+                @method('delete')
+                <button type="submit" class="btn btn-danger" onClick="return confirm('本当に削除しますか？');" >削除</button>
+                </form>
                 </h4>
                 <hr class="w-full">
                 <p class="mt-4 text-gray-600 py-4 whitespace-pre-line">{{$post->body}}</p>
