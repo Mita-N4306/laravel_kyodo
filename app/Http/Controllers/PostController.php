@@ -116,6 +116,7 @@ class PostController extends Controller
     {
        return view('post.edit',['post'=>$post]);
        //return view('post.edit',compact('post')); コンパクト関数
+       
     }
 
     /**
@@ -153,6 +154,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+      $post->comments()->delete();
       $post->delete();
       return redirect()->route('post.index')->with('message','投稿を削除しました');
     }
