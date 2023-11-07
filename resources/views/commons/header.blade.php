@@ -13,7 +13,7 @@
                 <a class="nav-link active" aria-current="page" href="{{ route('logout') }}">ログアウト</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href=#>マイページ</a>
+                <a class="nav-link active" aria-current="page" href="{{route('post.mypost') }}">あなたの投稿一覧</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{{ route('post.index') }}">過去の投稿一覧</a>
