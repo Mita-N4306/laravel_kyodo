@@ -16,6 +16,9 @@
                 <a class="nav-link active" aria-current="page" href="{{route('post.mypost') }}">あなたの投稿一覧</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{route('post.mycomment') }}">あなたの返信コメント一覧</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{{ route('post.index') }}">過去の投稿一覧</a>
               </li>
              @else

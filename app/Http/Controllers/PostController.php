@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator; //追加
-
+use App\Comment; //追加
 class PostController extends Controller
 {
     /**
@@ -164,5 +164,12 @@ class PostController extends Controller
       $user=auth()->user()->id;
       $posts=Post::where('user_id',$user)->orderBy('created_at','desc')->get();
       return view('post.mypost',['posts'=>$posts,'user'=>$user]);
+    }
+
+    public function mycomment()
+    {
+      $user=auth()->user()->id;
+      $comments=Comment::where('user_id',$user)->orderBy('created_at','desc')->get();
+      return view('post.mycomment',['comments'=>$comments,'user'=>$user]);
     }
 }

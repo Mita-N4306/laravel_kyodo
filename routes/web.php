@@ -21,6 +21,8 @@ Route::get('logout','Auth\LoginController@logout')->name('logout'); //ログア�
 Route::get('/', 'UsersController@index')->name('top');
 //自分の投稿
 Route::get('post/mypost','PostController@mypost')->name('post.mypost');
+//自分の返信コメント
+Route::get('post/mycomment','PostController@mycomment')->name('post.mycomment');
 //投稿機能
 Route::get('post/create','PostController@create')->name('post.create'); //新規投稿表示
 Route::post('post','PostController@store')->name('post.store'); //新規投稿実行

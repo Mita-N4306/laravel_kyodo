@@ -9,7 +9,7 @@
   @else
   @foreach($posts as $post)
   <div class="title-container">
-    <a href="{{ route('post.show',$post)}}">
+    <a href="{{ route('post.show',$post) }}">
         <p>件名：{{ $post->title }}</p>
     </a>
   </div>
