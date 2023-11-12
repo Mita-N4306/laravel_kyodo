@@ -28,6 +28,9 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{{ route('login') }}">ログイン</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{{ route('contact.create') }}">お問い合わせ</a>
+              </li>
             </ul>
              @endif
           </div>

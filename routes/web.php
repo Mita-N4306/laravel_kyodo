@@ -34,5 +34,6 @@ Route::delete('post/{post}','PostController@destroy')->name('post.destroy'); //�
 
 //コメント機能
 Route::post('post/comment/store','CommentController@store')->name('comment.store'); //コメントを保存
-
-
+//お問い合わせ機能
+Route::get('contact/create','ContactController@create')->name('contact.create');
+Route::post('contact/store','ContactController@store')->name('contact.store');
