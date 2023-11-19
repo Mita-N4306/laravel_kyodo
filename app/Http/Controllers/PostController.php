@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator; //追加
 use App\Comment; //追加
@@ -15,10 +16,9 @@ class PostController extends Controller
      */
     public function index()
     {
-      $posts = Post::orderBy('created_at','desc')->get();
+      $posts = Post::with('user')->orderBy('created_at','desc')->paginate(5);
       $user = auth()->user();
-    //   return view('post.index',compact('posts','user')); compact関数
-      return view('post.index',['posts'=>$posts,'user'=>$user]);
+      return view('welcome',['posts'=>$posts,'user'=>$user,]);
     }
 
     /**
@@ -39,40 +39,6 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //バリデーションの実装(パターン1)
-        // $data = $request->validate([
-        //     'title' => ['required', 'string', 'max:255'],
-        //     'body' => ['required', 'string', 'max:1025'],
-        //     'image' => ['image', 'max:1024'],
-        // ]);
-
-        // $post = new Post();
-        // $post->title = $data['title'];
-        // $post->body = $data['body'];
-        // $post->user_id = auth()->user()->id;
-        // $post->save();
-        // return redirect()->route('post.create')->with('message', '投稿を作成しました');
-
-        //バリデーションの実装(パターン2)
-    //    $rules = [
-    //     'title'=>'required|string|max:255',
-    //     'body'=>'required|string|max:1000',
-    //     'image'=>'image|max:1024',
-    //    ];
-    //    $validator=Validator::make($request->all(),$rules);
-    //    if($validator->fails()){
-    //     return back()
-    //      ->withErrors($validator)
-    //      ->withInput();
-    //    }else{
-    //     $post = new Post();
-    //     $post->title = $request->title;
-    //     $post->body = $request->body;
-    //     $post->user_id = auth()->user()->id;
-    //     $post->save();
-    //     return redirect()->route('post.create')->with('message','投稿を作成しました');
-    //     }
-
         $inputs=$request->validate([
         'title'=>'required|max:255',
         'body'=>'required|max:2000',
@@ -103,7 +69,6 @@ class PostController extends Controller
     public function show(Post $post)
     {
       return view('post.show',['post'=>$post]);
-    //   return view('post.show',compact('post')); コンパクト関数
     }
 
     /**
@@ -112,11 +77,28 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit(Request $request,$id)
     {
-       return view('post.edit',['post'=>$post]);
-       //return view('post.edit',compact('post')); コンパクト関数
+       $post=Post::findOrFail($id);
+       $this->authorize('edit-post',$post);
+       if(\Auth::id() === $post->user_id){
+        $inputs=$request->validate([
+         'title'=>'required|max:255',
+         'body'=>'required|max:2000',
+         'image'=>'image|max:1024',
+        ]);
+        $post->title = $inputs['title'];
+        $post->body = $inputs['body'];
+        $post->body = $request->input('body');
 
+        if($request->hasFile('image'))
+        {
+          $imagePath = $request->file('image')->store('post.store');
+          $post->image = $imagePath;
+        }
+        $post->save();
+       }
+       return view('post.edit',['post'=>$post]);
     }
 
     /**
@@ -126,8 +108,10 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request,$id)
     {
+      $post=Post::findOrFail($id);
+      $this->authorize('edit-post',$post);
       $inputs=$request->validate([
         'title'=>'required|max:255',
         'body'=>'required|max:2000',
@@ -152,10 +136,14 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-      $post->comments()->delete();
-      $post->delete();
+      $post=Post::findOrFail($id);
+      $this->authorize('delete-post',$post);
+      if(\Auth::id()===$post->user->id){
+        $post->delete();
+        $post->comments()->delete();
+      }
       return redirect()->route('post.index')->with('message','投稿を削除しました');
     }
 

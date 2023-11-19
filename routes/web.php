@@ -24,13 +24,20 @@ Route::get('post/mypost','PostController@mypost')->name('post.mypost');
 //自分の返信コメント
 Route::get('post/mycomment','PostController@mycomment')->name('post.mycomment');
 //投稿機能
-Route::get('post/create','PostController@create')->name('post.create'); //新規投稿表示
-Route::post('post','PostController@store')->name('post.store'); //新規投稿実行
+Route::group(['middleware'=>'auth'],function(){
+ Route::prefix('post')->group(function(){
+  Route::get('create','PostController@create')->name('post.create'); //新規投稿表示
+  Route::post('','PostController@store')->name('post.store'); //新規投稿実行
+  Route::delete('{id}','PostController@destroy')->name('post.destroy'); //データー削除
+ });
+});
+// Route::get('post/create','PostController@create')->name('post.create'); //新規投稿表示
+// Route::post('post','PostController@store')->name('post.store'); //新規投稿実行
+// Route::delete('post/{post}','PostController@destroy')->name('post.destroy'); //データー削除
 Route::get('post','PostController@index')->name('post.index'); //投稿一覧ページ
 Route::get('post/{post}','PostController@show')->name('post.show'); //投稿個別表示
 Route::get('post/{post}/edit','PostController@edit')->name('post.edit'); //投稿編集フォームの表示
 Route::put('post/{post}','PostController@update')->name('post.update'); //編集したデーターを保存
-Route::delete('post/{post}','PostController@destroy')->name('post.destroy'); //データー削除
 
 //コメント機能
 Route::post('post/comment/store','CommentController@store')->name('comment.store'); //コメントを保存

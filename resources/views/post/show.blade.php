@@ -10,6 +10,7 @@
    <div class="bg-white w-full  rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
      <div class="mt-4">
       <h4 class="text-lg text-gray-700 font-semibold">
+      @if(Auth::id() === $post->user_id)
       {{ $post->title }}
       <a href="{{ route('post.edit',$post) }}">
       <div class="edit-button-container">
@@ -31,6 +32,7 @@
         <img src="{{ asset('storage/images/'.$post->image)}}" alt="投稿画像">
         <p>(画像ファイル：{{ $post->image}})</p>
       </div>
+      @endif
       @endif
       <div class="text-sm font-semibold flex flex-row-reverse">
         <p> {{ $post->user->name }}さん • {{$post->created_at->diffForHumans()}}</p>
