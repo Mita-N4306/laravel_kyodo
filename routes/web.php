@@ -17,8 +17,6 @@ Route::post('signup','Auth\RegisterController@register')->name('signup.post'); /
 Route::get('login','Auth\LoginController@showLoginForm')->name('login'); //ログインフォーム表示
 Route::post('login','Auth\LoginController@login')->name('login.post'); //ログイン実行
 Route::get('logout','Auth\LoginController@logout')->name('logout'); //ログアウト実行
-
-Route::get('/', 'UsersController@index')->name('top');
 //自分の投稿
 Route::get('post/mypost','PostController@mypost')->name('post.mypost');
 //自分の返信コメント
@@ -39,6 +37,7 @@ Route::get('post/{post}','PostController@show')->name('post.show'); //投稿個�
 Route::get('post/{post}/edit','PostController@edit')->name('post.edit'); //投稿編集フォームの表示
 Route::put('post/{post}','PostController@update')->name('post.update'); //編集したデーターを保存
 
+Route::get('/','PostController@index')->name('post.index'); //トップページ表示
 //コメント機能
 Route::post('post/comment/store','CommentController@store')->name('comment.store'); //コメントを保存
 //お問い合わせ機能

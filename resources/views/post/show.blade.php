@@ -24,6 +24,7 @@
         <button type="submit" class="btn btn-danger" onClick="return confirm('本当に削除しますか？');" >削除</button>
        </div>
       </form>
+      @endif
       </h4>
       <hr class="w-full">
         <p class="mt-4 text-gray-600 py-4 whitespace-pre-line">{{$post->body}}</p>
@@ -32,7 +33,6 @@
         <img src="{{ asset('storage/images/'.$post->image)}}" alt="投稿画像">
         <p>(画像ファイル：{{ $post->image}})</p>
       </div>
-      @endif
       @endif
       <div class="text-sm font-semibold flex flex-row-reverse">
         <p> {{ $post->user->name }}さん • {{$post->created_at->diffForHumans()}}</p>
@@ -53,6 +53,7 @@
 @endforeach
 {{-- コメントの表示ここまで --}}
 {{-- コメント機能追加 --}}
+@if(Auth::id())
 <div class="comment-container">
  <form action="{{ route('comment.store') }}" method='post'>
   @csrf
@@ -63,6 +64,7 @@
   </div>
  </form>
 </div>
+@endif
 {{-- コメント機能追加ここまで --}}
 @include('commons.return_back')
 @endsection

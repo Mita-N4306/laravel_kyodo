@@ -16,7 +16,7 @@ class PostController extends Controller
      */
     public function index()
     {
-      $posts = Post::with('user')->orderBy('created_at','desc')->paginate(5);
+      $posts = Post::with('user','comments')->orderBy('created_at','desc')->paginate(5);
       $user = auth()->user();
       return view('welcome',['posts'=>$posts,'user'=>$user,]);
     }
@@ -70,7 +70,11 @@ class PostController extends Controller
     {
       return view('post.show',['post'=>$post]);
     }
-
+    public function showWelcomePage()
+    {
+     $posts=Post::with('comments')->paginate(5); // ユーザーのコメント一覧を取得（ログイン状態に関係なく）
+     return view('welcome',['posts'=>$posts]);
+    }
     /**
      * Show the form for editing the specified resource.
      *
@@ -79,26 +83,9 @@ class PostController extends Controller
      */
     public function edit(Request $request,$id)
     {
-       $post=Post::findOrFail($id);
-       $this->authorize('edit-post',$post);
-       if(\Auth::id() === $post->user_id){
-        $inputs=$request->validate([
-         'title'=>'required|max:255',
-         'body'=>'required|max:2000',
-         'image'=>'image|max:1024',
-        ]);
-        $post->title = $inputs['title'];
-        $post->body = $inputs['body'];
-        $post->body = $request->input('body');
-
-        if($request->hasFile('image'))
-        {
-          $imagePath = $request->file('image')->store('post.store');
-          $post->image = $imagePath;
-        }
-        $post->save();
-       }
-       return view('post.edit',['post'=>$post]);
+       $post=Post::findOrFail($id); // 特定のIDに対応するPostモデルを取得
+       $this->authorize('edit-post',$post); // ポストの編集権限を確認する
+       return view('post.edit',['post'=>$post]); // post.editビューにPostモデルを渡して表示
     }
 
     /**
@@ -108,7 +95,7 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(PostRequest $request,$id)
+    public function update(Request $request,$id)
     {
       $post=Post::findOrFail($id);
       $this->authorize('edit-post',$post);
