@@ -1,3 +1,53 @@
+/* ハンバーガーメニュー */
+.navbar {
+background-color: #333;
+padding: 15px;
+display: flex;
+justify-content: space-between;
+}
+.hamburger-menu {
+cursor: pointer;
+display: none;
+flex-direction: column;
+}
+.bar {
+width: 25px;
+height: 3px;
+background-color: white;
+margin: 6px 0;
+}
+.menu {
+list-style-type: none;
+margin: 0;
+padding: 0;
+display: flex;
+}
+.menu li {
+margin-right: 20px;
+}
+.menu a {
+text-decoration: none;
+color: white;
+font-weight: bold;
+}
+@media (max-width: 768px) {
+.hamburger-menu {
+        display: flex;
+}
+.menu {
+ display: none;
+flex-direction: column;
+position: absolute;
+top: 60px;
+left: 0;
+width: 100%;
+background-color: #333;
+}
+.menu.show {
+display: flex;
+}
+}
+/* ハンバーガーメニューここまで */
 .header_container{
 border-bottom:black 4px solid;
 }
