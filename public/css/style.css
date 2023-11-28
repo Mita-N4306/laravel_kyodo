@@ -1,3 +1,7 @@
+body {
+margin: 0;
+font-family: 'Arial', sans-serif;
+}
 /* ハンバーガーメニュー */
 .navbar {
 background-color: #333;
@@ -37,8 +41,8 @@ font-weight: bold;
 .menu {
  display: none;
 flex-direction: column;
-position: absolute;
-top: 60px;
+position: relative; /* ここを修正 */
+top: 10px;
 left: 0;
 width: 100%;
 background-color: #333;
@@ -48,6 +52,12 @@ display: flex;
 }
 }
 /* ハンバーガーメニューここまで */
+/* カルーセル画像 */
+.custom-carousel-image {
+width: 50%;
+height: auto;
+}
+/* カルーセル画像ここまで */
 .header_container{
 border-bottom:black 4px solid;
 }

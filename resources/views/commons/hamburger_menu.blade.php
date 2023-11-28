@@ -22,7 +22,8 @@
   <li>
     <a href="{{ route('login')}}">ログイン</a>
  </li>
-  <li><a href="{{ route('contact.create')}}">お問い合わせ</a>
+  <li>
+    <a href="{{ route('contact.create')}}">お問い合わせ</a>
  </li>
   @endif
  </ul>

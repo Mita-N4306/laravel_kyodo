@@ -1,13 +1,13 @@
 <div id="carouselExample" class="carousel slide">
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="{{asset('img/top_1.png')}}" class="d-block w-100" alt="トップ画像１">
+      <img src="{{asset('img/top_1.png')}}" class="d-block w-100 custom-carousel-image" alt="トップ画像１">
     </div>
     <div class="carousel-item">
-      <img src="{{asset('img/top_2.png')}}" class="d-block w-100" alt="トップ画像２">
+      <img src="{{asset('img/top_2.png')}}" class="d-block w-100 custom-carousel-image" alt="トップ画像２">
     </div>
     <div class="carousel-item">
-      <img src="{{asset('img/top_3.png')}}" class="d-block w-100" alt="トップ画像３">
+      <img src="{{asset('img/top_3.png')}}" class="d-block w-100 custom-carousel-image" alt="トップ画像３">
     </div>
   </div>
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
