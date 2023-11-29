@@ -43,7 +43,7 @@ class CommentController extends Controller
         'user_id'=>auth()->user()->id,
         'post_id'=>$request->post_id,
       ]);
-      return redirect()->route('post.index')->with('message','コメントを投稿しました');
+      return redirect()->route('post.show',$comment->post_id)->with('message','コメントを投稿しました');
     }
 
     /**
@@ -65,7 +65,7 @@ class CommentController extends Controller
      */
     public function edit(Comment $comment)
     {
-        //
+      return view('comment.edit',['comment'=>$comment]);
     }
 
     /**
@@ -77,7 +77,12 @@ class CommentController extends Controller
      */
     public function update(Request $request, Comment $comment)
     {
-        //
+      $inputs=request()->validate([
+        'body'=>'required|max:1500',
+      ]);
+      $comment->update(['body'=>$request->input('body')]);
+      return redirect()->route('post.show',$comment->post_id)
+      ->with('message','コメントが更新されました');
     }
 
     /**

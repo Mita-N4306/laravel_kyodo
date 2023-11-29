@@ -40,6 +40,10 @@ Route::put('post/{post}','PostController@update')->name('post.update'); //編集
 Route::get('/','PostController@index')->name('post.index'); //トップページ表示
 //コメント機能
 Route::post('post/comment/store','CommentController@store')->name('comment.store'); //コメントを保存
+Route::middleware(['auth'])->group(function(){
+ Route::get('/comment/{comment}/edit','CommentController@edit')->name('comment.edit');
+ Route::put('/comment/{comment}','CommentController@update')->name('comment.update');
+});
 //お問い合わせ機能
 Route::get('contact/create','ContactController@create')->name('contact.create');
 Route::post('contact/store','ContactController@store')->name('contact.store');

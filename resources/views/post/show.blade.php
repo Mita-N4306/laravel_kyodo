@@ -49,6 +49,13 @@
  <div class="text-sm font-semibold flex flex-row-reverse">
   <p>{{ $comment->user->name}}さん・{{$comment->created_at->diffForHumans()}}</p>
  </div>
+ @if(Auth::id() === $comment->user_id)
+ <a href="{{ route('comment.edit', $comment)}}">
+  <div class="edit-button-container">
+   <button type="button" class="btn btn-success">コメントの編集</button>
+  </div>
+ </a>
+ @endif
 </div>
 @endforeach
 {{-- コメントの表示ここまで --}}
@@ -63,8 +70,8 @@
    <button type="submit" class="btn btn-success">コメントする</button>
   </div>
  </form>
+ @endif
 </div>
-@endif
 {{-- コメント機能追加ここまで --}}
 @include('commons.return_back')
 @endsection
