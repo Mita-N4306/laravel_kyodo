@@ -43,6 +43,7 @@ Route::post('post/comment/store','CommentController@store')->name('comment.store
 Route::middleware(['auth'])->group(function(){
  Route::get('/comment/{comment}/edit','CommentController@edit')->name('comment.edit');
  Route::put('/comment/{comment}','CommentController@update')->name('comment.update');
+ Route::delete('/comment/{comment}','CommentController@destroy')->name('comment.destroy');
 });
 //お問い合わせ機能
 Route::get('contact/create','ContactController@create')->name('contact.create');
