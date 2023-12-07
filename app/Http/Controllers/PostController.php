@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-      return view('post.create');
+    //   return view('post.create');
     }
 
     /**
@@ -56,7 +56,7 @@ class PostController extends Controller
            $post->image = $name;
         }
         $post->save();
-        return redirect()->route('post.create')->with('message','投稿を送信しました');
+        return redirect()->route('post.show',$post)->with('message','投稿を送信しました');
 
     }
 

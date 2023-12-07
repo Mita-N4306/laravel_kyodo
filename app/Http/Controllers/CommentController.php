@@ -36,13 +36,22 @@ class CommentController extends Controller
     public function store(Request $request)
     {
       $inputs=request()->validate([
-        'body'=>'required|max:1500'
+        'body'=>'required|max:1500',
+        'image'=>'image|max:1024',
       ]);
       $comment=Comment::create([
         'body'=>$inputs['body'],
         'user_id'=>auth()->user()->id,
         'post_id'=>$request->post_id,
       ]);
+      if($request->hasFile('image')){
+        $original=request()->file('image')->getClientOriginalName();
+        $name=date('Ymd_Hits').'_'.$original; //秒まで含めた日時
+        $path = 'public/images/' . $name;
+        request()->file('image')->move(public_path('storage/images'), $name);
+        $comment->image=$name;
+      }
+      $comment->save();
       return redirect()->route('post.show',$comment->post_id)->with('message','コメントを投稿しました');
     }
 
@@ -79,8 +88,17 @@ class CommentController extends Controller
     {
       $inputs=request()->validate([
         'body'=>'required|max:1500',
+        'image'=>'image|max:1024',
       ]);
       $comment->update(['body'=>$request->input('body')]);
+      if ($request->hasFile('image')) {
+        $original = $request->file('image')->getClientOriginalName();
+        $name = date('Ymd_His') . '_' . $original;
+        $path = 'public/images/' . $name;
+        request()->file('image')->move(public_path('storage/images'), $name);
+        $comment->image = $name;
+    }
+      $comment->save();
       return redirect()->route('post.show',$comment->post_id)
       ->with('message','コメントが更新されました');
     }

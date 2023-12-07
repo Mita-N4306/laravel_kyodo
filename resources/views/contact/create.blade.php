@@ -25,4 +25,5 @@
   </div>
   </form>
 </div>
+@include('commons.return_back')
 @endsection
