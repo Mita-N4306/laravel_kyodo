@@ -1,7 +1,9 @@
 @extends('layouts.app')
 @section('content')
 <div class="form_container">
- <div class="text_container">
+ <div class="contact-top-container">
+   <h1>--CONTACT--</h1>
+   <img src="{{ asset('img/contact.png') }}" alt="お問い合わせ画像">
    <h2>お問い合わせ</h2>
    <p>↓↓各フォームを入力後送信ボタンを押してください↓↓</p>
  </div>

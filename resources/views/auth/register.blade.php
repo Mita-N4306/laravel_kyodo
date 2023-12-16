@@ -1,13 +1,16 @@
 @extends('layouts.app')
 @section('content')
 <div class="form_container">
- <div class="form_top_container">
-    <h1>Web開発 To Do List!!(仮)</h1>
-    <p>新規登録を行うと、コメント欄を利用できたり、あなたの登録したコメント一覧を閲覧することができます。</p>
+ <div class="register-top-container">
+  <h1>--REGISTER--</h1>
+  <img src="{{ asset('img/register.jpg') }}" alt="新規登録画像">
+  <p>新規登録を行うと、コメント欄を利用できたり、あなたの登録したコメント一覧を閲覧することができます。</p>
  </div>
  <div class="text_container">
+   <div class="exposition-container">
     <h2>新規会員登録</h2>
     <p>↓↓登録は以下を入力後、新規登録ボタンを押してください↓↓</p>
+   </div>
     <form action="{{ route('signup.post') }}" method="POST">
     @csrf
     <div class="form_group">
@@ -31,5 +34,6 @@
     </div>
     </form>
  </div>
+ @include('commons.return_back')
 </div>
 @endsection

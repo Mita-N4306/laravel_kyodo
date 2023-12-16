@@ -1,16 +1,18 @@
 @extends('layouts.app')
 @section('content')
- <div class="posts-list-container">
-    {{ auth()->user()->name }}さん、こんにちは！
+ <div class="mypost-name-container">
+  <p>{{ auth()->user()->name }}さん、こんにちは！</p>
   <h1>あなたの投稿一覧</h1>
+ </div>
   @include('commons.success_message')
   @if(count($posts) == 0)
   <p>あなたはまだ投稿していません</p>
   @else
   @foreach($posts as $post)
+ <div class="mypost-container">
   <div class="title-container">
     <a href="{{ route('post.show',$post) }}">
-        <p>件名：{{ $post->title }}</p>
+     <p>件名：{{ $post->title }}</p>
     </a>
   </div>
   <div class="body-container">
@@ -27,13 +29,17 @@
     @else
     <span>コメントはまだありません</span>
     @endif
+  </div>
     <a href="{{ route('post.show',$post)}}">
      <div class="button_container">
       <button type="submit" class="btn btn-success">コメントする</button>
      </div>
     </a>
-   </div>
+  </div>
   @endforeach
   @endif
- </div>
+  <div class="mycomment-link">
+   <a href="{{ route('post.mycomment')}}">あなたの返信コメントはこちら</a>
+  </div>
+  @include('commons.return_back')
 @endsection

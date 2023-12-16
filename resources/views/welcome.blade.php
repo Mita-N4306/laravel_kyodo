@@ -1,13 +1,18 @@
 @extends('layouts.app')
 @section('content')
 <div class="top_container">
+ @if(Auth::check())
+ <div class="login-message-container">
+  <h5>ログイン中</h5>
+ </div>
+ @endif
  <div class="top_container_area">
-  <h1>Web開発 To Do list!!(仮)</h1>
+  <h1>Web開発 To Do List!!(仮)</h1>
  </div>
  @if(Auth::check())
- <div class="post-container" style="text-align:center; margin-bottom:12px;">
+ <div class="post-container">
   <h2>投稿新規作成</h2>
-  <p>↓↓投稿内容を入力後、投稿ボタンを押してください↓↓</p>
+  <p>↓↓投稿内容を入力後、投稿ボタンを押してください(2000文字以内)↓↓</p>
  @include('commons.success_message')
  <form action="{{ route('post.store')}}" method="POST" enctype="multipart/form-data">
  @csrf
@@ -40,32 +45,34 @@
     @endif
     @if(isset($posts) && count($posts) > 0)
     @foreach($posts as $post)
-    <div class="title-container">
-      <a href="{{ route('post.show',$post)}}">
-          <p>件名：{{ $post->title }}</p>
-      </a>
-    </div>
-    <div class="body-container">
-     <p>投稿内容：{{ Str::limit($post->body,100,'...') }}</p>
-    </div>
-    <div class="post-user-date">
-      <p>{{ $post->user->name }}さん・{{ $post->created_at->diffForHumans() }}</p>
-    </div>
-    <div class="comment-badge-container">
-      @if($post->comments->count())
-      <span class="badge">
-       コメント{{ $post->comments->count() }}件
-      </span>
-      @else
-      <span>コメントはまだありません</span>
-      @endif
-      @if(Auth::id())
-      <a href="{{ route('post.show',$post)}}">
-       <div class="button_container">
-        <button type="submit" class="btn btn-success">コメントする</button>
-       </div>
-      </a>
-      @endif
+    <div class="index-post-container">
+        <div class="title-container">
+            <a href="{{ route('post.show',$post)}}">
+                <p>件名：{{ $post->title }}</p>
+            </a>
+          </div>
+          <div class="body-container">
+           <p>投稿内容：{{ Str::limit($post->body,100,'...') }}</p>
+          </div>
+          <div class="post-user-date">
+            <p>{{ $post->user->name }}さん・{{ $post->created_at->diffForHumans() }}</p>
+          </div>
+          <div class="comment-badge-container">
+            @if($post->comments->count())
+            <span class="badge">
+             コメント{{ $post->comments->count() }}件
+            </span>
+            @else
+            <span>コメントはまだありません</span>
+            @endif
+            @if(Auth::id())
+            <a href="{{ route('post.show',$post)}}">
+             <div class="button_container">
+              <button type="submit" class="btn btn-success">コメントする</button>
+             </div>
+            </a>
+            @endif
+        </div>
     </div>
     @endforeach
     {{ $posts->links("pagination::bootstrap-4") }}

@@ -1,13 +1,16 @@
 @extends('layouts.app')
 @section('content')
 <div class="form_container">
-    <div class="form_top_container">
-       <h1>Web開発 To Do List!!(仮)</h1>
-       <p>ログインを行うと、コメント欄を利用できたり、あなたの登録したコメント一覧を閲覧することができます。</p>
+    <div class="login-top-container">
+      <h1>--LOGIN--</h1>
+      <img src="{{ asset('img/login.jpg') }}" alt="ログイン画像">
+      <p>ログインを行うと、コメント欄を利用できたり、あなたの登録したコメント一覧を閲覧することができます。</p>
     </div>
     <div class="text_container">
-       <h2>ログイン</h2>
-       <p>↓↓ログインするとコメント欄に文字を入力することができます↓↓</p>
+      <div class="exposition-container">
+        <h2>ログイン</h2>
+        <p>↓↓ログインすると投稿やコメントすることができます↓↓</p>
+      </div>
        <form action="{{ route('login.post') }}" method="POST">
        @csrf
        <div class="form_group">
@@ -22,9 +25,10 @@
         <button type="submit" class="btn btn-primary">ログイン</button>
        </div>
        </form>
-       <div class="new-register">
+       <div class="new-register-link">
         <a href="{{ route('signup')}}">新規登録はこちら</a>
        </div>
+       @include('commons.return_back')
     </div>
    </div>
    @endsection
