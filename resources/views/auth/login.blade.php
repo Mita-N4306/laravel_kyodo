@@ -15,11 +15,11 @@
        @csrf
        <div class="form_group">
          <label for="email">メールアドレス</label>
-         <input type="text" id="email" name="email" class="form_control" value="{{ old('email') }}">
+         <input type="text" id="email" name="email" class="form_control" value="{{ old('email') }}" required>
        </div>
        <div class="form_group">
           <label for="password">パスワード</label>
-          <input type="password" id="password" name="password" class="form_control" value="{{ old('password') }}">
+          <input type="password" id="password" name="password" class="form_control" value="{{ old('password') }}" required>
        </div>
        <div class="button_container">
         <button type="submit" class="btn btn-primary">ログイン</button>

@@ -15,19 +15,19 @@
     @csrf
     <div class="form_group">
      <label for="name">名前</label>
-     <input type="text" id="name" name="name" class="form_control" value="{{ old('name') }}">
+     <input type="text" id="name" name="name" class="form_control" value="{{ old('name') }}" required>
     </div>
     <div class="form_group">
       <label for="email">メールアドレス</label>
-      <input type="text" id="email" name="email" class="form_control" value="{{ old('email') }}">
+      <input type="text" id="email" name="email" class="form_control" value="{{ old('email') }}" required>
     </div>
     <div class="form_group">
        <label for="password">パスワード</label>
-       <input type="password" id="password" name="password" class="form_control" value="{{ old('password')}}">
+       <input type="password" id="password" name="password" class="form_control" value="{{ old('password')}}" required>
     </div>
     <div class="form_group">
        <label for="password_confirmation">パスワード確認</label>
-       <input type="password" id="password_confirmation" name="password_confirmation" class="form_control" value="{{ old('password_confirmation') }}">
+       <input type="password" id="password_confirmation" name="password_confirmation" class="form_control" value="{{ old('password_confirmation') }}" required>
     </div>
     <div class="button_container">
      <button type="submit" class="btn btn-primary">新規登録</button>

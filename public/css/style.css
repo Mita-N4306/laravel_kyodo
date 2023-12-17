@@ -35,7 +35,7 @@ color: white;
 font-weight: bold;
 padding-left:8px;
 }
-@media (max-width: 768px) { 
+@media (max-width: 768px) {
 .hamburger-menu{
 display: flex;
 }

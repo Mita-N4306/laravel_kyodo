@@ -5,8 +5,8 @@
 </div>
 @include('commons.success_message')
  <div class="show-post-container">
-  <p>{{ $post->title }}<p>
-  <p>{{ $post->body }}</p>
+  <p>{{ $post->title }}</p>
+  <p>{!! nl2br(e($post->body)) !!}</p>
  @if($post->image)
  <div class="body-container">
   <img src="{{ asset('storage/images/'.$post->image)}}" alt="投稿画像">
@@ -36,7 +36,7 @@
 {{-- コメントの表示 --}}
 @foreach($post->comments as $comment)
 <div class="show-comment-container">
- {{ $comment->body }}
+ {!! nl2br(e($comment->body)) !!}
  @if($comment->image)
  <div class="body-container">
    <img src="{{ asset('storage/images/' .$comment->image) }}" alt="投稿画像">
@@ -71,8 +71,8 @@
  <form action="{{ route('comment.store') }}" method='post' enctype="multipart/form-data">
   @csrf
   <div class="form_group">
-    <input type="hidden" name='post_id' value="{{$post->id}}">
-    <textarea name="body" id="body" cols="30" rows="10" required placeholder="コメントを入力してください">{{old('body')}}</textarea>
+    <input type="hidden" name='post_id' value="{{ $post->id }}">
+    <textarea class="post-content" name="body" id="body" cols="30" rows="10" required placeholder="コメントを入力してください">{{old('body')}}</textarea>
   </div>
   <div class="form_group">
     <label for="image">画像を入れる</label>

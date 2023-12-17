@@ -22,7 +22,7 @@
  </div>
  <div class="form_group">
    <label for="body">本文</label>
-   <textarea name="body" id="body" cols="30" rows="10" required>{{ old('body') }}</textarea>
+   <textarea class="post-content" name="body" id="body" cols="30" rows="10" required>{{ old('body') }}</textarea>
  </div>
  <div class="form_group">
   <label for="">画像を入れる</label>
