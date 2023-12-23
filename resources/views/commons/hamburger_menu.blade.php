@@ -15,6 +15,11 @@
   <li>
     <a href="{{ route('post.mycomment')}}">あなたの返信コメント</a>
   </li>
+  @can('admin')
+  <li>
+    <a href="{{ route('profile.index') }}">ユーザー一覧</a>
+  </li>
+  @endcan
   @else
   <li>
     <a href="{{ route('signup')}}">新規会員登録</a>

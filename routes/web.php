@@ -48,3 +48,7 @@ Route::middleware(['auth'])->group(function(){
 //お問い合わせ機能
 Route::get('contact/create','ContactController@create')->name('contact.create');
 Route::post('contact/store','ContactController@store')->name('contact.store');
+//ユーザー一覧
+Route::middleware(['auth','can:admin'])->group(function(){
+Route::get('/profile/index','ProfileController@index')->name('profile.index');
+});

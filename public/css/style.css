@@ -241,6 +241,24 @@ text-align: center;
 white-space: nowrap;
 background-color: green;
 }
+table {
+width: 95%;
+margin-top:16px;
+}
+.userlist-container{
+margin-bottom:16px;
+text-align:center;
+}
+.userlist-container h1{
+border-bottom:2px solid black;
+margin-bottom:16px;
+}
+.userlist-table-head{
+background-color:lightgreen;
+}
+.userlist-table-body{
+background-color:lightgray;
+}
 /* footer */
 .footer_container{
 width:100%;
