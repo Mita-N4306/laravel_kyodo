@@ -83,8 +83,9 @@ class PostController extends Controller
      */
     public function edit(Request $request,$id)
     {
+       $this->authorize('update',$post);
        $post=Post::findOrFail($id); // 特定のIDに対応するPostモデルを取得
-       $this->authorize('edit-post',$post); // ポストの編集権限を確認する
+    //    $this->authorize('edit-post',$post); // ポストの編集権限を確認する
        return view('post.edit',['post'=>$post]); // post.editビューにPostモデルを渡して表示
     }
 
@@ -97,8 +98,9 @@ class PostController extends Controller
      */
     public function update(Request $request,$id)
     {
+      $this->authorize('update',$post);
       $post=Post::findOrFail($id);
-      $this->authorize('edit-post',$post);
+    //   $this->authorize('edit-post',$post);
       $inputs=$request->validate([
         'title'=>'required|max:255',
         'body'=>'required|max:2000',
@@ -125,8 +127,9 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
+      $this->authorize('delete',$post);
       $post=Post::findOrFail($id);
-      $this->authorize('delete-post',$post);
+    //   $this->authorize('delete-post',$post);
       if(\Auth::id()===$post->user->id){
         $post->delete();
         $post->comments()->delete();
